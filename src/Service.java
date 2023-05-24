@@ -190,25 +190,28 @@ public class Service extends DBconnection{
 		execAction(query);
 	}
 	
+
 	
-	public void addAbsenta(String elev, String materie, String absenta) throws SQLException  {
-		ResultSet idelev = execQuery("select idElev from elev where `numeElev`='"+elev+"'");
+	public void addAbsenta(String elev, String materie, String absenta) throws SQLException {
+		ResultSet idelev = execQuery("select * from elev where `numeElev`='"+elev+"'");
 		int idElev = 0;
 		int idMaterie = 0;
 		while(idelev.next()) {
 			idElev = idelev.getInt("idElev");
 		}
-		ResultSet idmat = execQuery("select idMaterie from materie where `numeMaterie`='"+materie+"'");
+		
+		ResultSet idmat = execQuery("select * from materie where `numeMaterie`='"+materie+"'");
 		while(idmat.next()) {
-			idMaterie = idmat.getInt(idMaterie);
+			 idMaterie = idmat.getInt("idMaterie");
 		}
 		
-		String query = "insert into absente (idElev, idMaterie, absenta) values (?,?,?)";
+		String query = "insert into absente (idElev, idMaterie, absenta) value (?,?,?)";
 		preparedStm = getCon().prepareStatement(query);
-		preparedStm.setInt(1, idElev);
-		preparedStm.setInt(2, idMaterie);
-		preparedStm.setString(3, absenta);
+		preparedStm.setInt(1,idElev);
+		preparedStm.setInt(2,idMaterie);
+		preparedStm.setString(3,absenta);
 		execAction(query);
+		
+		
 	}
-
 }

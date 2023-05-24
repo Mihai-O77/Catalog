@@ -128,7 +128,7 @@ public class MainCatalog {
 		
 		System.out.println("*Editare*");
 		if(secretar) {
-			System.out.println("_new_ ---adauga \n _a_ ------alege un elev \n _b_ ------ inapoi");
+			System.out.println(" _new_ ---adauga \n _del_ ------ sterge \n _b_ ------ inapoi");
 		}
 		else if(profesor) {
 			System.out.println(" _a_ ------- alege un elev \n _b_ ------- inapoi");
@@ -139,11 +139,11 @@ public class MainCatalog {
 			edit();
 		}
 		if(next.equals("a")) {
+			if(profesor) {
 			System.out.println("Introdu numele elevului...");
 			String nume = scaner.nextLine();
-			if(profesor) {
-				System.out.println(" _n_ --- adauga o nota \n _a_ ------absenta \n _b_ ------ inapoi");
-			}
+			System.out.println(" _n_ --- adauga o nota \n _a_ ------absenta \n _b_ ------ inapoi");
+			
 			
 		next = scaner.nextLine();
 		switch(next) {
@@ -168,6 +168,7 @@ public class MainCatalog {
 			edit();break;
 		}
 		}
+	}
 		else if(next.equals("b")) {
 			info_edit();
 		}
